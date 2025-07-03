@@ -14,15 +14,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-            compilerOptions: {
-              noEmit: false,
-            }
-          }
-        },
+        use: 'ts-loader',
         exclude: /node_modules/,
       },
       {
