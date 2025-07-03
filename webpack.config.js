@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = {
   entry: './src/index.tsx',
   mode: process.env.NODE_ENV || 'development',
@@ -8,7 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     clean: true,
-    publicPath: process.env.NODE_ENV === 'production' ? '/stock-trading-game/' : '/'
+    publicPath: isProduction ? '/stock-trading-game/' : '/'
   },
   module: {
     rules: [
@@ -29,6 +31,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      inject: 'head',
+      scriptLoading: 'defer'
     }),
   ],
   devServer: {
